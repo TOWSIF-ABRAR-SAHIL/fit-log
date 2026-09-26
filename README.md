@@ -18,17 +18,17 @@
 
 ## 🔥 Key Features
 
-1. **Interactive Exercise Library & Filtering**
-   Browse through a curated list of workouts with search capabilities, muscle group filtering, and flexible sorting options based on duration, calories burned, and user ratings.
+1. **Interactive Workout Search & Filtering**
+   Explore a complete exercise library with real-time text search, muscle category filtering, and smart sorting options based on duration, calories burned, and user ratings.
 
-2. **Daily Workout Plan (5-Lift Cap Limit)**
-   Manage today's routine effortlessly with a strict 5-lift cap feature to keep training sessions focused and intense.
+2. **Daily Workout Plan with Cap Limit**
+   Add exercises to today's workout list with a smart 5-lift cap feature to keep daily routines focused and effective.
 
-3. **Save for Later Library**
-   Bookmark favorite exercises to a dedicated "Saved" list and access them anytime to customize future workout plans.
+3. **Bookmark & Saved Workouts**
+   Save favorite lifts to a dedicated "Saved" tab for easy access and seamlessly transfer them into daily plans whenever needed.
 
-4. **Dynamic Fitness Dashboard & Metrics**
-   Real-time stat tracking that dynamically updates exercise count, total estimated workout time, and overall calories burned based on the active view.
+4. **Dynamic Active Tab Stats Dashboard**
+   Real-time statistics card that dynamically recalculates total exercise count, total estimated time, and total calories burned based on the active tab (Today's Plan vs. Saved).
 
-5. **Workout Completion & Interactive Toasts**
-   Mark individual exercises as completed with responsive progress updates and clean toast notifications alerting users to workout additions, limits, or removals.
+5. **Progress Tracking & Toast Notifications**
+   Mark individual lifts as completed with interactive check buttons, visual progress states, and toast notifications that keep users informed of every action.
