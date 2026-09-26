@@ -1,85 +1,72 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useFit } from "@/context/FitContext";
-import { Dumbbell, BookmarkCheck, Calendar, Home } from "lucide-react";
+import { Dumbbell } from "lucide-react";
 
 export default function Navbar() {
   const pathname = usePathname();
-  const { planList, savedList } = useFit();
-
-  const navLinks = [
-    { name: "Home", href: "/", icon: Home },
-    { name: "All Workouts", href: "/workouts", icon: Dumbbell },
-    {
-      name: "Today's Plan",
-      href: "/plan",
-      icon: Calendar,
-      badge: planList.length,
-    },
-    {
-      name: "Saved Lifts",
-      href: "/saved",
-      icon: BookmarkCheck,
-      badge: savedList.length,
-    },
-  ];
+  const { plan, saved } = useFit();
 
   return (
-    <header className="sticky top-0 z-50 bg-[#181B20]/80 backdrop-blur-md border-b border-gray-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <Image
-              src="/logo.png"
-              alt="FitLog Logo"
-              width={36}
-              height={36}
-              className="w-9 h-9 object-contain rounded-lg transition-transform group-hover:scale-105"
-            />
-            <span className="font-bold text-xl tracking-tight text-white group-hover:text-amber-400 transition-colors">
-              Fit<span className="text-amber-400">Log</span>
-            </span>
+    <header className="bg-[#090a0c] border-b border-gray-800/80 sticky top-0 z-50 px-4 md:px-8 py-3.5">
+      <div className="max-w-7xl mx-auto flex items-center justify-between">
+        
+        {/* Brand Logo */}
+        <Link href="/" className="flex items-center gap-2 group">
+          <Dumbbell className="w-5 h-5 text-lime-400 -rotate-45 group-hover:rotate-0 transition-transform duration-300" />
+          <span className="font-black text-lg tracking-wider text-white">
+            FITLOG
+          </span>
+        </Link>
+
+        {/* Navigation Links */}
+        <nav className="flex items-center gap-1 bg-[#121418] p-1 rounded-full border border-gray-800/80">
+          <Link
+            href="/"
+            className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-200 ${
+              pathname === "/"
+                ? "bg-[#1c1f26] text-white border border-gray-700/60 shadow-sm"
+                : "text-gray-400 hover:text-white border border-transparent"
+            }`}
+          >
+            Workout
           </Link>
+          <Link
+            href="/my-plan"
+            className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-200 ${
+              pathname === "/my-plan"
+                ? "bg-[#1c1f26] text-white border border-gray-700/60 shadow-sm"
+                : "text-gray-400 hover:text-white border border-transparent"
+            }`}
+          >
+            My Plan
+          </Link>
+        </nav>
 
-          {/* Navigation Links */}
-          <nav className="flex items-center gap-1 sm:gap-2">
-            {navLinks.map((link) => {
-              const Icon = link.icon;
-              const isActive = pathname === link.href;
+        {/* Right Status Badges (Exact Figma Design) */}
+        <Link
+          href="/my-plan"
+          className="flex items-center gap-5 text-xs font-medium hover:opacity-90 transition-opacity"
+        >
+          {/* Plan Count */}
+          <div className="flex items-center gap-2 text-gray-300">
+            <span>Plan</span>
+            <span className="bg-[#a3e635] text-black text-[11px] font-black w-5 h-5 rounded-full flex items-center justify-center">
+              {plan.length}
+            </span>
+          </div>
 
-              return (
-                <Link
-                  key={link.name}
-                  href={link.href}
-                  className={`relative flex items-center gap-2 px-3 sm:px-4 py-2 rounded-lg text-sm font-medium transition-all ${
-                    isActive
-                      ? "bg-amber-400/10 text-amber-400 font-semibold"
-                      : "text-gray-400 hover:text-white hover:bg-white/5"
-                  }`}
-                >
-                  <Icon className="w-4 h-4" />
-                  <span className="hidden md:inline">{link.name}</span>
+          {/* Saved Count */}
+          <div className="flex items-center gap-2 text-gray-400">
+            <span>Saved</span>
+            <span className="border border-gray-700 text-gray-300 text-[11px] font-bold w-5 h-5 rounded-full flex items-center justify-center">
+              {saved.length}
+            </span>
+          </div>
+        </Link>
 
-                  {/* Badge Count */}
-                  {typeof link.badge === "number" && link.badge > 0 && (
-                    <span className="ml-1 bg-amber-400 text-black text-xs font-bold px-1.5 py-0.5 rounded-full">
-                      {link.badge}
-                    </span>
-                  )}
-
-                  {/* Active Indicator Bar */}
-                  {isActive && (
-                    <span className="absolute bottom-0 left-2 right-2 h-0.5 bg-amber-400 rounded-full" />
-                  )}
-                </Link>
-              );
-            })}
-          </nav>
-        </div>
       </div>
     </header>
   );
