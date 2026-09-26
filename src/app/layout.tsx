@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import "./globals.css";
-import { FitProvider } from "../context/FitContext";
+import { FitProvider } from "@/context/FitContext";
 import { Toaster } from "react-hot-toast";
+import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "FitLog — Workout Library",
@@ -15,10 +16,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="bg-[#121417] text-white min-h-screen">
+      <body className="bg-[#121417] text-white min-h-screen flex flex-col">
         <FitProvider>
           <Toaster position="top-right" />
-          {children}
+          <Navbar />
+          <main className="flex-1">{children}</main>
         </FitProvider>
       </body>
     </html>
